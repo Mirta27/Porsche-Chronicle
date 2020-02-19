@@ -1,0 +1,209 @@
+/* wide scale elements that cover the entire page */
+
+html, body {
+    height: 99.1%;
+    max-width: 100%;
+}
+
+body {
+    /*background-image: url("../images/gradient-bg.jpg");*/
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+/* navbar and banner */
+
+.nav {
+    background-color: black;
+    background-color: black;
+    border-bottom: 4px ridge firebrick;
+}
+
+/* the ul is set to display: flex, and li set to display: table-cell with margin: auto. This is how the list spans 100% width on screen. */
+.nav-models {
+    display: flex;
+    padding: 0 30px 0px 30px;
+    margin: 10px;
+    list-style: none;
+}
+
+.nav-models li {
+    display: table-cell;
+    width: 14.2%;
+    margin: 4px auto;
+}
+
+.nav-models li a {
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    text-decoration: none;
+}
+
+.banner {
+    height: 50px;
+    /*background-image: url("../images/gradient-bg.jpg");*/
+    opacity: 95%;
+}
+
+/* Porsche timeline */
+
+.slideContainer {
+    display: flex;
+    width: 97%;
+    height: 80px;
+    margin: 15px auto;
+    margin-bottom: 0;
+    background-image: url(../images/timeline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 96.7%;
+    height: 50px;
+    outline: none;
+    margin: auto;
+    background: none;
+    position: relative;
+    bottom: 15px;
+    -webkit-transition: .1s;
+    transition: background .1s;
+}
+
+.slider:hover {
+    background: rgba(1, 1, 1, 0.20);
+}
+
+/* this is the part of the slider you can click and move */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 6px;
+    height: 25px;
+    background: firebrick;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.slider::-moz-range-thumb {
+    width: 6px;
+    height: 25px;
+    background: firebrick;
+    cursor: pointer;
+}
+
+.slider:hover::-webkit-slider-thumb {
+    background: white;
+    border: 1px solid white;
+}
+
+/* content area, the major visible part of the webpage */
+
+.content {
+    height: 76%;
+    border-bottom: 4px groove firebrick;
+    background-color: white;
+}
+
+.porscheThumbnail {
+    height: 88%;
+    margin: auto;
+}
+
+.porscheImageContainer {
+    height: 98.9%;
+    background-image: url("../images/Panamericana_Concept_Custom.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top: 3px groove gray;
+    border-bottom: 3px groove gray;
+}
+
+.porscheName {
+    height: 6%;
+    text-align: center;
+    font-size: 1.75em;
+    text-shadow: 1px 1px 3px white;
+}
+
+#porscheYear {
+    background-image: linear-gradient(aliceblue, white);
+}
+
+#porscheModel {
+    background-image: linear-gradient(white, aliceblue);
+}
+
+.porscheName p {
+    margin: 0;
+}
+
+#porscheYear p {
+    padding-top: 6px;
+}
+
+#porscheModel p {
+    padding-top: 4px;
+}
+
+/* buttons and other smaller items */
+
+.porscheButton {
+    display: block;
+    padding: 4px 0 4px 0;
+    font-size: 1.25em;
+    text-align: center;
+    background: firebrick;
+    border: 2px solid black;
+}
+
+.porscheButton:hover {
+    background-color: darkred;
+    transform: translateY(2px);
+}
+
+.porscheButton:active {
+    transform: translateY(4px);
+}
+
+#selectedFamily {
+    border: 3px inset gold;
+}
+
+/* media queries */
+/* ones that adjust the central content based on current viewport height, the base one handles low verticality badly */
+@media all and (max-height: 850px) {
+    #porscheYear { display: none;
+    }
+    .porscheThumbnail {
+        height: 92.5%;
+    }
+    .porscheName {
+        height: 7.5%;
+    }
+}
+
+@media all and (max-height: 700px) {
+    .porscheThumbnail {
+        height: 90.5%;
+    }
+    .porscheName {
+        height: 9.5%;
+    }
+}
+
+@media all and (max-height: 500px) {
+    .porscheThumbnail, .porscheImageContainer {
+        height: 100%;
+    }
+    .porscheName {
+        display: none;
+    }
+}
