@@ -106,7 +106,7 @@ body {
 /* content area, the major visible part of the webpage */
 
 .content {
-    height: 76%;
+    height: 77%;
     border-bottom: 4px groove firebrick;
     background-color: white;
 }
@@ -127,6 +127,7 @@ body {
 }
 
 .porscheName {
+    display: flex;
     height: 6%;
     text-align: center;
     font-size: 1.75em;
@@ -143,14 +144,55 @@ body {
 
 .porscheName p {
     margin: 0;
+    padding: 0;
 }
 
 #porscheYear p {
-    padding-top: 6px;
+    margin: auto;
 }
 
 #porscheModel p {
-    padding-top: 4px;
+    display: inline-block;
+    padding-top: 2px;
+}
+
+/* table items for the bottom bar of the content area */
+
+.tableWrapper {
+    margin: auto;
+    display: table-cell;
+    width: 1025px;
+}
+
+.tableWrapper .porscheArrowsLeft {
+    font-size: 0s.9em;
+    float: left;
+    padding: 5px 10px 5px 10px;
+    margin: 0 20px 0 0;
+    background: gray;
+}
+
+.tableWrapper .porscheArrowsRight {
+    font-size: 0s.9em;
+    float: right;
+    padding: 5px 10px 5px 10px;
+    margin: 0 0 0 20px;
+    background: gray;
+}
+
+#arrowUp, #arrowDown {
+    opacity: .3;
+    -webkit-transition: .1s;
+    transition: opacity .1s;
+}
+
+#arrowUp {
+    opacity: .3;
+}
+
+#arrowUp:hover, #arrowDown:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 /* buttons and other smaller items */
