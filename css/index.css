@@ -26,7 +26,7 @@ body {
 /* the ul is set to display: flex, and li set to display: table-cell with margin: auto. This is how the list spans 100% width on screen. */
 .nav-models {
     display: flex;
-    padding: 0 30px 0px 30px;
+    padding: 0 30px 0 30px;
     margin: 10px;
     list-style: none;
 }
@@ -49,16 +49,52 @@ body {
     opacity: 95%;
 }
 
+.porsche-model-family .selectedFamily {
+    border: 3px inset gold;
+}
+
+/* adds the names to the buttons at the top of the screen */
+
+#buttonAll:before {
+    content: "All";
+}
+
+#button911:before {
+    content: "356/911 Series";
+}
+
+#button944:before {
+    content: "924/944/928/968";
+}
+
+#buttonBoxster:before {
+    content: "914/Boxster/Cayman";
+}
+
+#buttonSUVs:before {
+    content: "Sedans/SUVs";
+}
+
+#buttonConcepts:before {
+    content: "Porsche Concepts";
+}
+
+#buttonRacing:before {
+    content: "Racing Models";
+}
+
 /* Porsche timeline */
 
 .slideContainer {
     display: flex;
     width: 97%;
     height: 80px;
+    min-height: 80px;
+    max-height: 80px;
     margin: 15px auto;
     margin-bottom: 0;
     background-image: url(../images/timeline.png);
-    background-size: 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
@@ -71,7 +107,7 @@ body {
     margin: auto;
     background: none;
     position: relative;
-    bottom: 15px;
+    bottom: 14px;
     -webkit-transition: .1s;
     transition: background .1s;
 }
@@ -84,8 +120,8 @@ body {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 6px;
-    height: 25px;
+    width: 7px;
+    height: 30px;
     background: firebrick;
     cursor: pointer;
     border: 1px solid black;
@@ -149,11 +185,12 @@ body {
 
 #porscheYear p {
     margin: auto;
+    padding-top: 1px;
 }
 
 #porscheModel p {
     display: inline-block;
-    padding-top: 2px;
+    padding-top: 4px;
 }
 
 /* table items for the bottom bar of the content area */
@@ -169,7 +206,7 @@ body {
     float: left;
     padding: 5px 10px 5px 10px;
     margin: 0 20px 0 0;
-    background: gray;
+    background: lightgray;
 }
 
 .tableWrapper .porscheArrowsRight {
@@ -177,22 +214,23 @@ body {
     float: right;
     padding: 5px 10px 5px 10px;
     margin: 0 0 0 20px;
-    background: gray;
+    background: lightgray;
 }
 
 #arrowUp, #arrowDown {
-    opacity: .3;
+    opacity: .4;
     -webkit-transition: .1s;
     transition: opacity .1s;
-}
-
-#arrowUp {
-    opacity: .3;
 }
 
 #arrowUp:hover, #arrowDown:hover {
     opacity: 1;
     cursor: pointer;
+}
+
+#arrowUp:active, #arrowDown:active {
+    background: gray;
+    transform: translateY(2px);
 }
 
 /* buttons and other smaller items */
@@ -204,6 +242,7 @@ body {
     text-align: center;
     background: firebrick;
     border: 2px solid black;
+    border-radius: 3px;
 }
 
 .porscheButton:hover {
@@ -213,10 +252,6 @@ body {
 
 .porscheButton:active {
     transform: translateY(4px);
-}
-
-#selectedFamily {
-    border: 3px inset gold;
 }
 
 /* media queries */
@@ -247,5 +282,40 @@ body {
     }
     .porscheName {
         display: none;
+    }
+}
+
+/* ones that adjust content based on the screen's width */
+
+@media all and (max-width: 1500px) {
+    #buttonBoxster:before {
+        content: "914/Boxster";
+    }
+}
+
+@media all and (max-width: 1350px) {
+    #buttonConcepts:before {
+        content: "Concepts";
+    }
+    .nav-models {
+        padding: 0 15px 0 15px;
+    }
+    .slideContainer {
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 1250px) {
+    #button911:before {
+        content:"356/911";
+    }
+    #button944:before {
+        content:"944/928";
+    }
+    #buttonSUVs:before {
+        content:"Sedan/SUV";
+    }
+    #buttonRacing:before {
+        content: "Racing";
     }
 }
