@@ -226,10 +226,10 @@ body {
 #arrowUp:hover, #arrowDown:hover {
     opacity: 1;
     cursor: pointer;
+    background: gray;
 }
 
 #arrowUp:active, #arrowDown:active {
-    background: gray;
     transform: translateY(2px);
 }
 
