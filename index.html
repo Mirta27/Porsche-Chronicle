@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GPRB Porsche Museum</title>
+        <title>GPRB Porsche Chronicle</title>
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <script type="text/javascript" src="js/timeline.js"></script>
     </head>
@@ -40,24 +40,26 @@
         </div>
         
         <div class="content">
-             <div class="porscheName" id="porscheYear">
-                 <p>1989</p>
+             <div class="porscheName" id="porscheNameTop">
+                 <p id="porscheYear"></p>
              </div>
              <div class="porscheThumbnail">
-                 <div class="porscheImageContainer">
+                 <div class="porscheImageContainer" id="porscheImageContainer">
                  </div>
              </div>
-             <div class="porscheName" id="porscheModel">
+             <div class="porscheName" id="porscheNameBottom">
                  <div class="tableWrapper">
-                     <p class="porscheArrowsLeft" id="arrowUp">▲</p><p class="porscheArrowsLeft" id="arrowDown">▼</p>
-                     <p>Porsche Panamericana Concept</p>
-                     <p class="porscheArrowsRight" id="arrowUp">▲</p><p class="porscheArrowsRight" id="arrowDown">▼</p>
+                     <p class="porscheArrowsLeft upArrows" id="arrowUp">▲</p><p class="porscheArrowsLeft downArrows" id="arrowDown">▼</p>
+                     <p id="porscheModel"></p>
+                     <p class="porscheArrowsRight upArrows" id="arrowUp">▲</p><p class="porscheArrowsRight downArrows" id="arrowDown">▼</p>
                  </div>
             </div>
         </div>
         
-        <div class="slideContainer">
-            <input type="range" min="0" max="72" value="0" class="slider" id="yearSelector">
+        <div class="bottomOfPage">
+            <div class="slideContainer">
+                <input type="range" min="0" max="72" value="0" class="slider" id="yearSelector">
+            </div>
         </div>
     </body>
 </html>

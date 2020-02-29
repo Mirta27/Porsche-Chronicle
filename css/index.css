@@ -3,6 +3,8 @@
 html, body {
     height: 99.1%;
     max-width: 100%;
+    min-height: 620px;
+    min-width: 900px;
 }
 
 body {
@@ -85,14 +87,19 @@ body {
 
 /* Porsche timeline */
 
+.bottomOfPage {
+    border-top: 4px groove firebrick;
+    padding-top: 15px;
+    margin-top: 0px;
+}
+
 .slideContainer {
     display: flex;
     width: 97%;
     height: 80px;
     min-height: 80px;
     max-height: 80px;
-    margin: 15px auto;
-    margin-bottom: 0;
+    margin: auto;
     background-image: url(../images/timeline.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -120,8 +127,9 @@ body {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 7px;
-    height: 30px;
+    width: 8px;
+    height: 32px;
+    margin-bottom: 1px;
     background: firebrick;
     cursor: pointer;
     border: 1px solid black;
@@ -143,7 +151,6 @@ body {
 
 .content {
     height: 77%;
-    border-bottom: 4px groove firebrick;
     background-color: white;
 }
 
@@ -154,7 +161,7 @@ body {
 
 .porscheImageContainer {
     height: 98.9%;
-    background-image: url("../images/Panamericana_Concept_Custom.png");
+    background-image: url("../images/911_997.jpg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -166,15 +173,15 @@ body {
     display: flex;
     height: 6%;
     text-align: center;
-    font-size: 1.75em;
+    font-size: 1.78em;
     text-shadow: 1px 1px 3px white;
 }
 
-#porscheYear {
+#porscheNameTop {
     background-image: linear-gradient(aliceblue, white);
 }
 
-#porscheModel {
+#porscheNameBottom {
     background-image: linear-gradient(white, aliceblue);
 }
 
@@ -183,12 +190,12 @@ body {
     padding: 0;
 }
 
-#porscheYear p {
+#porscheYear {
     margin: auto;
-    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
-#porscheModel p {
+#porscheModel {
     display: inline-block;
     padding-top: 4px;
 }
@@ -199,37 +206,40 @@ body {
     margin: auto;
     display: table-cell;
     width: 1025px;
+    height: 44px;
+}
+
+.tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
+    background: lightgray;
+    height: 85%;
 }
 
 .tableWrapper .porscheArrowsLeft {
-    font-size: 0s.9em;
     float: left;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 20px 0 0;
-    background: lightgray;
 }
 
 .tableWrapper .porscheArrowsRight {
-    font-size: 0s.9em;
     float: right;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 20px;
-    background: lightgray;
 }
 
-#arrowUp, #arrowDown {
+.upArrows, .downArrows {
     opacity: .4;
     -webkit-transition: .1s;
     transition: opacity .1s;
+    display: none;
 }
 
-#arrowUp:hover, #arrowDown:hover {
+.upArrows:hover, .downArrows:hover {
     opacity: 1;
     cursor: pointer;
     background: gray;
 }
 
-#arrowUp:active, #arrowDown:active {
+.upArrows:active, .downArrows:active {
     transform: translateY(2px);
 }
 
@@ -256,32 +266,63 @@ body {
 
 /* media queries */
 /* ones that adjust the central content based on current viewport height, the base one handles low verticality badly */
-@media all and (max-height: 850px) {
-    #porscheYear { display: none;
-    }
+@media all and (max-height: 900px) {
     .porscheThumbnail {
-        height: 92.5%;
-    }
-    .porscheName {
-        height: 7.5%;
+        height: 87.5%;
     }
 }
 
-@media all and (max-height: 700px) {
+@media all and (max-height: 840px) {
     .porscheThumbnail {
-        height: 90.5%;
+        height: 88%;
     }
     .porscheName {
-        height: 9.5%;
+        height: 5.9%;
+    }
+    #porscheModel {
+        padding-top: 4px;
+    }
+    .tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
+        font-size: 0.88em;
+        height: 74%;
+    }
+    .porscheName p {
+        font-size: 0.9em;
     }
 }
 
-@media all and (max-height: 500px) {
-    .porscheThumbnail, .porscheImageContainer {
-        height: 100%;
+@media all and (max-height: 800px) {
+    .porscheThumbnail {
+        height: 87.5%;
+    }
+}
+
+@media all and (max-height: 730px) {
+    .porscheThumbnail {
+        height: 88%;
     }
     .porscheName {
-        display: none;
+        height: 5.8%;
+    }
+    #porscheModel {
+        padding-top: 0;
+        transform: translateY(-2px);
+    }
+    .tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
+        font-size: 0.75em;
+        height: 85%;
+    }
+    .porscheName p {
+        font-size: 0.8em;
+    }
+    .tableWrapper {
+        height: 33px;
+    }
+}
+
+@media all and (max-height: 660px) {
+    .porscheThumbnail {
+        height: 87.2%;
     }
 }
 
