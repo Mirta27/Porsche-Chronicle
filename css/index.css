@@ -121,6 +121,7 @@ body {
 
 .slider:hover {
     background: rgba(1, 1, 1, 0.20);
+    cursor: pointer;
 }
 
 /* this is the part of the slider you can click and move */
