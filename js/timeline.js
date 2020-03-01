@@ -38,12 +38,12 @@ function draw(index1, index2) {
 
 /* loading from database might be implemented with a for-loop of some kind, but for now three example cars are created manually */
 
-var porscheSerial = ["21", "44", "44", "57"];
-var porscheId = ["914_4", "968_Coupe", "928_GTS", "911_997"];
-var porscheShowcase = ["914_4", "968_Coupe", "928_GTS", "911_997"];
-var porscheFamily = ["Boxster", "944", "944", "911"];
-var porscheYear = ["1969", "1992", "1992", "2005"];
-var porscheModel = ["914", "968", "928 GTS", "911 Carrera S (997)"];
+var porscheSerial = ["21", "41", "41", "41", "44", "44", "57"];
+var porscheId = ["914_4", "944_S2_Coupe", "964_Carr_4", "Panamerica_89", "968_Coupe", "928_GTS", "911_997"];
+var porscheShowcase = ["914_4", "944_S2_Coupe", "964_Carr_4", "Panamerica_89", "968_Coupe", "928_GTS", "911_997"];
+var porscheFamily = ["boxster", "944", "911", "concept", "944", "944", "911"];
+var porscheYear = ["1969", "1989", "1989", "1989", "1992", "1992", "2005"];
+var porscheModel = ["914", "944 S2", "911 Carrera 4 (964)", "Panamericana Concept", "968", "928 GTS", "911 Carrera S (997)"];
 
 
 
@@ -53,6 +53,7 @@ var porscheModel = ["914", "968", "928 GTS", "911 Carrera S (997)"];
 /* loading all porsches found and turning them into Porsche objects */
 /* the Porsche array goes in two dimensions, cars of the same year are added as an array for that year */
 function loadPorsches(wantedFamily) {
+    porscheModels.length = 0;
     for (var i = 0; i < porscheSerial.length; i++) {
         var currentPorsche = new Porsche(porscheSerial[i], porscheId[i], porscheShowcase[i], porscheFamily[i], porscheYear[i], porscheModel[i]);
         /* the current Porsche needs to be of the model family the user wants to see on the website */
@@ -89,8 +90,14 @@ function loadPorsches(wantedFamily) {
 
 /* selects the default car of current settings */
 function selectDefault() {
-    if(porscheModels[0].length > 1) {
-        porscheModels[0][0].draw(0, 0);
+    /* we check if there even is a car to draw */
+    if(porscheModels.length === 0) {
+        console.log("No car to render. Rebuilding database...");
+        updateFamilyButtons("all");
+        loadPorsches("all");
+        selectDefault();
+    } else if(porscheModels[0].length > 1) {
+        porscheModels[0][0].draw(0, 0);  
     } else {
         porscheModels[0].draw(0, 0);
     }
@@ -129,6 +136,18 @@ function updateUpDownArrows() {
     }
 }
 
+/* handles the stylization of the buttons at the top of the page */
+function updateFamilyButtons(family) {
+    var familyButtons = document.getElementsByClassName("porscheFamilyButton");
+    for(var i = 0; i < familyButtons.length; i++) {
+        if(familyButtons[i].className == "porscheFamilyButton selectedFamily") {
+            familyButtons[i].className = "porscheFamilyButton";
+            break;
+        }
+    }
+    document.getElementById(family).className = "porscheFamilyButton selectedFamily";
+}
+
 function moveSelectionUp() {
     moveSelection("up");
 }
@@ -155,11 +174,7 @@ function moveSelection(direction) {
     }
 }
 
-
-
-
-/* event listener functions */
-
+/* changes the porsche car when user changes the year in the timeline */
 function yearChange() {
     /* we store the model year the user wants and find the first car that matches this year from our data */
     var wantedSerial = document.getElementById("yearSelector").value;
@@ -181,6 +196,13 @@ function yearChange() {
     }
 }
 
+function changeCurrentFamily() {
+    console.log("Changing model family to " + this.id + ".");
+    updateFamilyButtons(this.id);
+    loadPorsches(this.id);
+    selectDefault();
+}
+
 
 
 
@@ -192,9 +214,14 @@ window.onload = function() {
     document.getElementById("yearSelector").addEventListener('input', yearChange);
     var upArrows = document.getElementsByClassName("upArrows");
     var downArrows = document.getElementsByClassName("downArrows");
+    var familyButtons = document.getElementsByClassName("porscheFamilyButton");
 
     for(var i = 0; i < upArrows.length; i++) {
         upArrows[i].addEventListener('click', moveSelectionUp);
         downArrows[i].addEventListener('click', moveSelectionDown);
+    }
+    
+    for(var j = 0; j < familyButtons.length; j++) {
+        familyButtons[j].addEventListener('click', changeCurrentFamily);
     }
 }
