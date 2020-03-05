@@ -8,6 +8,11 @@ var porscheModels = [];
 /* this value should reduce the need to search "what car we're currently at?" in certain situations, e.g. when up/down buttons are pressed. */
 var currentDataBaseIndexHorizontal = 0;
 var currentDataBaseIndexVertical = 0;
+var verticalTraversingDirection = "down";
+var dualArrowsLast = false;
+
+
+
 
 function Porsche(serial, id, showcaseId, family, year, model) {
     this.serial = serial;
@@ -24,7 +29,8 @@ Porsche.prototype.toString = function () {
     return "Porsche no. " + this.serial + " is a " + this.modelName + " of " + this.modelYear + " with an id of " + this.id + ". It uses the showcase of " + this.showcaseId + " and is part of the " + this.family + " line.";
 }
 
-function draw(index1, index2) {
+function draw(index1, index2, direction) {
+    console.log("Rendering: Porsche " + this.modelName + " of " + this.modelYear);
     document.getElementById("porscheYear").innerHTML = this.modelYear;
     document.getElementById("porscheModel").innerHTML = "Porsche " + this.modelName;
     document.getElementById("porscheImageContainer").style.backgroundImage = "url(images/" + this.id + ".jpg)";
@@ -32,7 +38,7 @@ function draw(index1, index2) {
     document.getElementById("yearSelector").value = this.serial;
     currentDataBaseIndexHorizontal = index1;
     currentDataBaseIndexVertical = index2;
-    console.log(currentDataBaseIndexHorizontal + ", " + currentDataBaseIndexVertical);
+    verticalTraversingDirection = direction;
     updateUpDownArrows();
 }
 
@@ -97,9 +103,9 @@ function selectDefault() {
         loadPorsches("all");
         selectDefault();
     } else if(porscheModels[0].length > 1) {
-        porscheModels[0][0].draw(0, 0);  
+        porscheModels[0][0].draw(0, 0, "down");  
     } else {
-        porscheModels[0].draw(0, 0);
+        porscheModels[0].draw(0, 0, "down");
     }
 }
 
@@ -118,21 +124,52 @@ function upDownArrows(state1, state2) {
 function updateUpDownArrows() {
     /* does our current position have verticality? */
     if(porscheModels[currentDataBaseIndexHorizontal].length > 1) {
-        /* does it have cars above and below? */
+        /* does it have cars above and below? If so, put both arrows in the correct order. Quite a resource-intensive operation. */
         if(porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1] != null && porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1] != null) {
-            console.log("Showing up and down arrows.");
-            upDownArrows("block", "block");
+            handleDualArrows();
             /* has above but not below? */
         } else if(porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1] != null) {
-            console.log("Showing up arrow.");
             upDownArrows("block", "none");
+            dualArrowsLast = false;
             /* must only have below */
         } else {
-            console.log("Showing down arrow.");
             upDownArrows("none", "block");
+            dualArrowsLast = false;
         }
     } else {
         upDownArrows("none", "none");
+        dualArrowsLast = false;
+    }
+}
+
+function handleDualArrows() {
+    //console.log("Dual arrow handling: " + !dualArrowsLast + ", direction: " + verticalTraversingDirection);
+    if(!dualArrowsLast) {
+        var arrowsContainerLeft = document.getElementById("arrowsContainerLeft");
+        var arrowsContainerRight = document.getElementById("arrowsContainerRight");
+        var downArrowLeft = document.getElementsByClassName("porscheArrowsLeft downArrows")[0];
+        var upArrowLeft = document.getElementsByClassName("porscheArrowsLeft upArrows")[0];
+        var downArrowRight = document.getElementsByClassName("porscheArrowsRight downArrows")[0];
+        var upArrowRight = document.getElementsByClassName("porscheArrowsRight upArrows")[0];
+        upDownArrows("block", "block");
+
+        for(var i = 0; i < arrowsContainerLeft.length; i++) {
+            arrowsContainerLeft.children[i].remove();
+            arrowsContainerRight.children[i].remove();
+        }
+
+        if(verticalTraversingDirection == "up") {
+            arrowsContainerLeft.appendChild(upArrowLeft);
+            arrowsContainerLeft.appendChild(downArrowLeft);
+            arrowsContainerRight.appendChild(upArrowRight);
+            arrowsContainerRight.appendChild(downArrowRight);
+        } else {
+            arrowsContainerLeft.appendChild(downArrowLeft);
+            arrowsContainerLeft.appendChild(upArrowLeft);
+            arrowsContainerRight.appendChild(downArrowRight);
+            arrowsContainerRight.appendChild(upArrowRight);
+        }
+        dualArrowsLast = true;
     }
 }
 
@@ -141,11 +178,18 @@ function updateFamilyButtons(family) {
     var familyButtons = document.getElementsByClassName("porscheFamilyButton");
     for(var i = 0; i < familyButtons.length; i++) {
         if(familyButtons[i].className == "porscheFamilyButton selectedFamily") {
-            familyButtons[i].className = "porscheFamilyButton";
+            familyButtons[i].classList.remove("selectedFamily");
             break;
         }
     }
-    document.getElementById(family).className = "porscheFamilyButton selectedFamily";
+    document.getElementById(family).classList.add("selectedFamily");
+}
+
+function changeCurrentFamily() {
+    console.log("Changing model family to " + this.id + ".");
+    updateFamilyButtons(this.id);
+    loadPorsches(this.id);
+    selectDefault();
 }
 
 function moveSelectionUp() {
@@ -160,47 +204,43 @@ function moveSelectionDown() {
 function moveSelection(direction) {
     switch(direction) {
         case "up":
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical-1);
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical-1, direction);
             break;
         case "down":
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical+1);
-            break;
-        case "zero":
-            currentDataBaseIndexVertical = 0;
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical+1, direction);
             break;
         default:
             currentDataBaseIndexVertical = 0;
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical);
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical, "down");
     }
 }
 
 /* changes the porsche car when user changes the year in the timeline */
 function yearChange() {
     /* we store the model year the user wants and find the first car that matches this year from our data */
+    var newPorscheFound = false;
     var wantedSerial = document.getElementById("yearSelector").value;
 
     for(var i = 0; i < porscheModels.length; i++) {
-        if(porscheModels[i].length > 1) {
-            if(porscheModels[i][0].serial == wantedSerial) {
-                porscheModels[i][0].draw(i, 0);
-                upDownArrows("none", "block");
-            }
-        } else {
-            if(porscheModels[i].serial == wantedSerial) {
-                porscheModels[i].draw(i, 0);
-                upDownArrows("none", "none");
-            }
+        if(porscheModels[i].length > 1 && porscheModels[i][0].serial == wantedSerial) {
+            porscheModels[i][0].draw(i, 0, "down");
+            newPorscheFound = true;
+
+        } else if(porscheModels[i].serial == wantedSerial) {
+            porscheModels[i].draw(i, 0, "down");
+            newPorscheFound = true;
         }
-        /* restore database vertical index to zero every time the database index moves horizontally */
-        moveSelection("zero");
+    }
+    if(!newPorscheFound) {
+        console.log("Found nothing.");
     }
 }
 
-function changeCurrentFamily() {
-    console.log("Changing model family to " + this.id + ".");
-    updateFamilyButtons(this.id);
-    loadPorsches(this.id);
-    selectDefault();
+/* stores the selector value when the user begins clicking the slider. */
+
+function beginTraversing() {
+    var year = document.getElementById("yearSelector").value;
+    traversingDirectionStart = year;
 }
 
 
@@ -212,6 +252,7 @@ loadPorsches("all");
 window.onload = function() {
     selectDefault();
     document.getElementById("yearSelector").addEventListener('input', yearChange);
+    document.getElementById("yearSelector").addEventListener('mousedown', beginTraversing);
     var upArrows = document.getElementsByClassName("upArrows");
     var downArrows = document.getElementsByClassName("downArrows");
     var familyButtons = document.getElementsByClassName("porscheFamilyButton");
@@ -220,7 +261,7 @@ window.onload = function() {
         upArrows[i].addEventListener('click', moveSelectionUp);
         downArrows[i].addEventListener('click', moveSelectionDown);
     }
-    
+
     for(var j = 0; j < familyButtons.length; j++) {
         familyButtons[j].addEventListener('click', changeCurrentFamily);
     }

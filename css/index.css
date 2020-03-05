@@ -4,7 +4,7 @@ html, body {
     height: 99.1%;
     max-width: 100%;
     min-height: 620px;
-    min-width: 900px;
+    min-width: 1075px;
 }
 
 body {
@@ -146,26 +146,42 @@ body {
     border: 1px solid white;
 }
 
+.slider:active::-webkit-slider-thumb {
+    background: lightgray;
+    border: 1px solid firebrick;
+}
+
 /* content area, the major visible part of the webpage */
 
 .content {
     height: 76.5%;
     background-color: white;
+    position: relative;
 }
 
 .porscheThumbnail {
-    height: 88%;
-    margin: auto;
+    height: 87.15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px groove gray;
+    border-bottom: 3px groove gray;
 }
 
 .porscheImageContainer {
-    height: 98.9%;
+    height: 100%;
+    width: 100%;
+    position: relative;
     background-image: url("../images/911_997.jpg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    border-top: 3px groove gray;
-    border-bottom: 3px groove gray;
+    left: 0%;
+    -webkit-transition: left 1.4s ease-in;
+    -moz-transition: left 1.4s ease-in;
+    -ms-transition: left 1.4s ease-in;
+    -o-transition: left 1.4s ease-in;
+    transition: left 1.4s ease-in;
 }
 
 .porscheName {
@@ -174,6 +190,12 @@ body {
     text-align: center;
     font-size: 1.78em;
     text-shadow: 1px 1px 3px white;
+    -webkit-transition: opacity 1.4s ease-in;
+    -moz-transition: opacity 1.4s ease-in;
+    -ms-transition: opacity 1.4s ease-in;
+    -o-transition: opacity 1.4s ease-in;
+    transition: opacity 1.4s ease-in;
+    opacity: 1;
 }
 
 #porscheNameTop {
@@ -196,7 +218,21 @@ body {
 
 #porscheModel {
     display: inline-block;
-    padding-top: 4px;
+    padding-top: 3px;
+}
+
+/* content area animations for the image and text */
+
+.animationImageThrowLeft {
+    left: -101%;
+}
+
+.animationImageThrowRight {
+    left: 101%;
+}
+
+.animationTextThrow {
+    opacity: 0;
 }
 
 /* table items for the bottom bar of the content area */
@@ -208,20 +244,33 @@ body {
     height: 44px;
 }
 
+#arrowsContainerLeft, #arrowsContainerRight {
+    height: 44px;
+}
+
+#arrowsContainerLeft {
+    float: left;
+}
+
+#arrowsContainerRight {
+    float: right;
+}
+
 .tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
+    display: none;
     background: lightgray;
     height: 85%;
 }
 
 .tableWrapper .porscheArrowsLeft {
     float: left;
-    padding: 5px 10px 0 10px;
+    padding: 4px 10px 0 10px;
     margin: 0 20px 0 0;
 }
 
 .tableWrapper .porscheArrowsRight {
     float: right;
-    padding: 5px 10px 0 10px;
+    padding: 4px 10px 0 10px;
     margin: 0 0 0 20px;
 }
 
@@ -282,6 +331,11 @@ body {
     .porscheThumbnail {
         height: 87.5%;
     }
+    .tableWrapper {
+        width: 75%;
+        max-width: 1025px;
+        min-width: 900px; 
+    }
 }
 
 @media all and (max-height: 840px) {
@@ -319,6 +373,9 @@ body {
     #porscheModel {
         padding-top: 0;
         transform: translateY(-2px);
+    }
+    #arrowsContainerLeft, #arrowsContainerRight {
+        height: 33px;
     }
     .tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
         font-size: 0.75em;

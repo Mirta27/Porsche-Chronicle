@@ -5,13 +5,13 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <script type="text/javascript" src="js/timeline.js"></script>
     </head>
-    
+
     <body>
         <div class="nav">
             <div class="banner">
-                
+
             </div>
-            
+
             <div class="porsche-models">
                 <ul class="nav-models">
                     <li class="porsche-model-family">
@@ -38,24 +38,30 @@
                 </ul>
             </div>
         </div>
-        
+
         <div class="content">
-             <div class="porscheName" id="porscheNameTop">
-                 <p id="porscheYear"></p>
-             </div>
-             <div class="porscheThumbnail">
-                 <div class="porscheImageContainer" id="porscheImageContainer">
-                 </div>
-             </div>
-             <div class="porscheName" id="porscheNameBottom">
-                 <div class="tableWrapper">
-                     <p class="porscheArrowsLeft downArrows" id="arrowDown">▼</p><p class="porscheArrowsLeft upArrows" id="arrowUp">▲</p>
-                     <p id="porscheModel"></p>
-                     <p class="porscheArrowsRight downArrows" id="arrowDown">▼</p><p class="porscheArrowsRight upArrows" id="arrowUp">▲</p>
-                 </div>
+            <div class="porscheName" id="porscheNameTop">
+                <p id="porscheYear"></p>
+            </div>
+            <div class="porscheThumbnail">
+                <div class="porscheImageContainer" id="porscheImageContainer">
+                </div>
+            </div>
+            <div class="porscheName" id="porscheNameBottom">
+                <div class="tableWrapper">
+                    <div id="arrowsContainerLeft">
+                        <p class="porscheArrowsLeft downArrows" id="arrowDown">▼</p>
+                        <p class="porscheArrowsLeft upArrows" id="arrowUp">▲</p>
+                    </div>
+                    <p id="porscheModel"></p>
+                    <div id="arrowsContainerRight">
+                        <p class="porscheArrowsRight downArrows" id="arrowDown">▼</p>
+                        <p class="porscheArrowsRight upArrows" id="arrowUp">▲</p>
+                    </div>
+                </div>
             </div>
         </div>
-        
+
         <div class="bottomOfPage">
             <div class="slideContainer">
                 <input type="range" min="0" max="72" value="0" class="slider" id="yearSelector">
