@@ -14,30 +14,33 @@ var dualArrowsLast = false;
 
 
 
-function Porsche(serial, id, showcaseId, family, year, model) {
+function Porsche(serial, id, showcaseId, family, year, model, indexH, indexV) {
     this.serial = serial;
     this.id = id;
     this.showcaseId = showcaseId;
     this.family = family;
     this.modelYear = year;
     this.modelName = model;
+    this.horizontalIndex = indexH;
+    this.verticalIndex = indexV;
     /* attempting to follow the Command design pattern, the Porsche commands itself to be drawn on screen. */
     this.draw = draw;
 }
 
 Porsche.prototype.toString = function () {
-    return "Porsche no. " + this.serial + " is a " + this.modelName + " of " + this.modelYear + " with an id of " + this.id + ". It uses the showcase of " + this.showcaseId + " and is part of the " + this.family + " line.";
+    return "Porsche No. " + this.serial + " at " + this.horizontalIndex + ", " + this.verticalIndex + " is a " + this.modelName + " of " + this.modelYear + ". ID: " + this.id + ", showcase: " + this.showcaseId + ". Belongs to the " + this.family + " family.";
 }
 
-function draw(index1, index2, direction) {
+function draw(direction) {
     console.log("Rendering: Porsche " + this.modelName + " of " + this.modelYear);
+    console.log(this.toString());
     document.getElementById("porscheYear").innerHTML = this.modelYear;
     document.getElementById("porscheModel").innerHTML = "Porsche " + this.modelName;
     document.getElementById("porscheImageContainer").style.backgroundImage = "url(images/" + this.id + ".jpg)";
 
     document.getElementById("yearSelector").value = this.serial;
-    currentDataBaseIndexHorizontal = index1;
-    currentDataBaseIndexVertical = index2;
+    currentDataBaseIndexHorizontal = this.horizontalIndex;
+    currentDataBaseIndexVertical = this.verticalIndex;
     verticalTraversingDirection = direction;
     updateUpDownArrows();
 }
@@ -60,20 +63,25 @@ var porscheModel = ["914", "944 S2", "911 Carrera 4 (964)", "Panamericana Concep
 /* the Porsche array goes in two dimensions, cars of the same year are added as an array for that year */
 function loadPorsches(wantedFamily) {
     porscheModels.length = 0;
+    var horizontalIndexLoad = 0;
+    var verticalIndexLoad = 1;
+    
     for (var i = 0; i < porscheSerial.length; i++) {
-        var currentPorsche = new Porsche(porscheSerial[i], porscheId[i], porscheShowcase[i], porscheFamily[i], porscheYear[i], porscheModel[i]);
+        verticalIndexLoad = 1;
+        var currentPorsche = new Porsche(porscheSerial[i], porscheId[i], porscheShowcase[i], porscheFamily[i], porscheYear[i], porscheModel[i], 0, 0);
         /* the current Porsche needs to be of the model family the user wants to see on the website */
         if(currentPorsche.family == wantedFamily || wantedFamily == "all") {
+            currentPorsche.horizontalIndex = horizontalIndexLoad;
 
             /* if numerous Porsches of the same year were found or not (assumes the database is in order) */
             if(porscheSerial[i+1] == porscheSerial[i]) {
-                var begin = i+1;
                 var tempArray = [currentPorsche];
 
-                for(var j = begin; j < porscheSerial.length; j++) {
+                for(var j = i+1; j < porscheSerial.length; j++) {
                     if(porscheSerial[j] == porscheSerial[j-1]) {
-                        var nextPorsche = new Porsche(porscheSerial[j], porscheId[j], porscheShowcase[j], porscheFamily[j], porscheYear[j], porscheModel[j]);
+                        var nextPorsche = new Porsche(porscheSerial[j], porscheId[j], porscheShowcase[j], porscheFamily[j], porscheYear[j], porscheModel[j], horizontalIndexLoad, verticalIndexLoad);
                         if(nextPorsche.family == wantedFamily || wantedFamily == "all") {
+                            verticalIndexLoad++;
                             tempArray.push(nextPorsche);
                         }
                         i++;
@@ -90,6 +98,7 @@ function loadPorsches(wantedFamily) {
                 porscheModels.push(currentPorsche);
             }
         }
+        horizontalIndexLoad++;
     }
     console.log(porscheModels);
 }
@@ -103,9 +112,9 @@ function selectDefault() {
         loadPorsches("all");
         selectDefault();
     } else if(porscheModels[0].length > 1) {
-        porscheModels[0][0].draw(0, 0, "down");  
+        porscheModels[0][0].draw("down");  
     } else {
-        porscheModels[0].draw(0, 0, "down");
+        porscheModels[0].draw("down");
     }
 }
 
@@ -204,14 +213,14 @@ function moveSelectionDown() {
 function moveSelection(direction) {
     switch(direction) {
         case "up":
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical-1, direction);
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw(direction);
             break;
         case "down":
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical+1, direction);
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw(direction);
             break;
         default:
             currentDataBaseIndexVertical = 0;
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw(currentDataBaseIndexHorizontal, currentDataBaseIndexVertical, "down");
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw("down");
     }
 }
 
@@ -223,11 +232,11 @@ function yearChange() {
 
     for(var i = 0; i < porscheModels.length; i++) {
         if(porscheModels[i].length > 1 && porscheModels[i][0].serial == wantedSerial) {
-            porscheModels[i][0].draw(i, 0, "down");
+            porscheModels[i][0].draw("down");
             newPorscheFound = true;
 
         } else if(porscheModels[i].serial == wantedSerial) {
-            porscheModels[i].draw(i, 0, "down");
+            porscheModels[i].draw("down");
             newPorscheFound = true;
         }
     }

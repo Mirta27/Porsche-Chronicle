@@ -30,6 +30,7 @@ body {
     display: flex;
     padding: 0 30px 0 30px;
     margin: 10px;
+    margin-bottom: 11px;
     list-style: none;
 }
 
@@ -41,10 +42,9 @@ body {
 
 .nav-models li p {
     color: white;
-    text-shadow: 1px 1px 3px black;
+    text-shadow: 1px 1px 4px black;
     text-decoration: none;
     margin: 0;
-    margin-top: 3px;
 }
 
 .banner {
@@ -144,11 +144,13 @@ body {
 .slider:hover::-webkit-slider-thumb {
     background: white;
     border: 1px solid white;
+    box-shadow: 0 0 16px white;
 }
 
 .slider:active::-webkit-slider-thumb {
-    background: lightgray;
-    border: 1px solid firebrick;
+    background: sienna;
+    border: 1px solid black;
+    box-shadow: 0 0 2px black;
 }
 
 /* content area, the major visible part of the webpage */
@@ -156,7 +158,6 @@ body {
 .content {
     height: 76.5%;
     background-color: white;
-    position: relative;
 }
 
 .porscheThumbnail {
@@ -242,6 +243,7 @@ body {
     display: table-cell;
     width: 1025px;
     height: 44px;
+    overflow: hidden;
 }
 
 #arrowsContainerLeft, #arrowsContainerRight {
@@ -256,39 +258,44 @@ body {
     float: right;
 }
 
-.tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
-    display: none;
-    background: lightgray;
-    height: 85%;
-}
-
 .tableWrapper .porscheArrowsLeft {
     float: left;
-    padding: 4px 10px 0 10px;
     margin: 0 20px 0 0;
 }
 
 .tableWrapper .porscheArrowsRight {
     float: right;
-    padding: 4px 10px 0 10px;
     margin: 0 0 0 20px;
 }
 
-.upArrows, .downArrows {
+.tableWrapper .upArrows, .tableWrapper .downArrows {
     opacity: .4;
+    background: lightgray;
+    height: 85%;
+    display: block;
+    margin-top: -5px;
+    font-size: 1.25em;
     -webkit-transition: .1s;
     transition: opacity .1s;
-    display: none;
+}
+
+.tableWrapper .upArrows {
+    padding: 5px 10px 4px 10px;
+}
+
+.tableWrapper .downArrows {
+    padding: 0 10px 9px 10px;
 }
 
 .upArrows:hover, .downArrows:hover {
     opacity: 1;
     cursor: pointer;
-    background: gray;
+    background: silver;
 }
 
 .upArrows:active, .downArrows:active {
     transform: translateY(2px);
+    background: dimgray;
 }
 
 /* buttons and other smaller items */
@@ -301,28 +308,51 @@ body {
     background: firebrick;
     border: 2px solid black;
     border-radius: 3px;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -ms-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
 }
 
 .porscheButton:hover {
-    background-color: darkred;
-}
-
-.porscheFamilyButton:hover {
-    transform: translateY(2px);
+    background: rgb(255,238,0);
+    box-shadow: 0 0 7px white;
+    letter-spacing: 0.6px;
     cursor: pointer;
 }
 
+.porscheButton:active {
+    background: sienna;
+    box-shadow: 0 0 0 white;
+    letter-spacing: 0.6px;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
 .porscheFamilyButton:active {
-    transform: translateY(4px);
+    transform: translateY(2px);
+}
+
+.porsche-model-family {
+    height: 36px;
+    -webkit-transition: width 0.2s ease-in;
+    -moz-transition: width 0.2s ease-in;
+    -ms-transition: width 0.2s ease-in;
+    -o-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
 }
 
 .porsche-model-family .selectedFamily {
     border: 3px inset gold;
-    margin-top: 0;
+    margin-top: -3px;
 }
 
 .porsche-model-family .selectedFamily:active {
-    border: 3px inset goldenrod;
+    border: 3px inset darkgoldenrod;
 }
 
 /* media queries */
