@@ -317,7 +317,7 @@ body {
 
 .porscheButton:hover {
     background: rgb(255,238,0);
-    box-shadow: 0 0 7px white;
+    box-shadow: 0 0 6px white;
     letter-spacing: 0.6px;
     cursor: pointer;
 }

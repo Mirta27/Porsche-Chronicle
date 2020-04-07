@@ -8,7 +8,7 @@ var porscheModels = [];
 /* this value should reduce the need to search "what car we're currently at?" in certain situations, e.g. when up/down buttons are pressed. */
 var currentDataBaseIndexHorizontal = 0;
 var currentDataBaseIndexVertical = 0;
-var verticalTraversingDirection = "down";
+var verticalTraversingDirection = true;
 var dualArrowsLast = false;
 
 
@@ -31,17 +31,17 @@ Porsche.prototype.toString = function () {
     return "Porsche No. " + this.serial + " at " + this.horizontalIndex + ", " + this.verticalIndex + " is a " + this.modelName + " of " + this.modelYear + ". ID: " + this.id + ", showcase: " + this.showcaseId + ". Belongs to the " + this.family + " family.";
 }
 
-function draw(direction) {
+function draw() {
     console.log("Rendering: Porsche " + this.modelName + " of " + this.modelYear);
-    console.log(this.toString());
+    //console.log(this.toString());
     document.getElementById("porscheYear").innerHTML = this.modelYear;
     document.getElementById("porscheModel").innerHTML = "Porsche " + this.modelName;
     document.getElementById("porscheImageContainer").style.backgroundImage = "url(images/" + this.id + ".jpg)";
 
     document.getElementById("yearSelector").value = this.serial;
+    verticalTraversingDirection = directionDefinition(this.verticalIndex);
     currentDataBaseIndexHorizontal = this.horizontalIndex;
     currentDataBaseIndexVertical = this.verticalIndex;
-    verticalTraversingDirection = direction;
     updateUpDownArrows();
 }
 
@@ -97,8 +97,8 @@ function loadPorsches(wantedFamily) {
             } else {
                 porscheModels.push(currentPorsche);
             }
+            horizontalIndexLoad++;
         }
-        horizontalIndexLoad++;
     }
     console.log(porscheModels);
 }
@@ -112,22 +112,26 @@ function selectDefault() {
         loadPorsches("all");
         selectDefault();
     } else if(porscheModels[0].length > 1) {
-        porscheModels[0][0].draw("down");  
+        porscheModels[0][0].draw();  
     } else {
-        porscheModels[0].draw("down");
+        porscheModels[0].draw();
     }
 }
 
-/* manually shows and hides the up/down navigation arrows in the UI. */
-function upDownArrows(state1, state2) {
-    var upArrows = document.getElementsByClassName("upArrows");
-    var downArrows = document.getElementsByClassName("downArrows");
-
-    for(var i = 0; i < upArrows.length; i++) {
-        upArrows[i].style.display = state1;
-        downArrows[i].style.display = state2;
+// These two functions get called by draw()
+// Returns the direction the user was last moving in within the UI
+function directionDefinition(newVertIndex) {
+    let oldVertIndex = currentDataBaseIndexVertical;
+    
+    if(newVertIndex >= oldVertIndex) {
+        console.log("Movement down or unchanged.");
+        return true;
+    } else {
+        console.log("Movement up.")
+        return false;
     }
 }
+
 
 /* automatic up/down arrow handling based on current database position */
 function updateUpDownArrows() {
@@ -151,6 +155,17 @@ function updateUpDownArrows() {
     }
 }
 
+/* manually shows and hides the up/down navigation arrows in the UI. */
+function upDownArrows(state1, state2) {
+    var upArrows = document.getElementsByClassName("upArrows");
+    var downArrows = document.getElementsByClassName("downArrows");
+
+    for(var i = 0; i < upArrows.length; i++) {
+        upArrows[i].style.display = state1;
+        downArrows[i].style.display = state2;
+    }
+}
+
 function handleDualArrows() {
     //console.log("Dual arrow handling: " + !dualArrowsLast + ", direction: " + verticalTraversingDirection);
     if(!dualArrowsLast) {
@@ -167,7 +182,7 @@ function handleDualArrows() {
             arrowsContainerRight.children[i].remove();
         }
 
-        if(verticalTraversingDirection == "up") {
+        if(verticalTraversingDirection == false) {
             arrowsContainerLeft.appendChild(upArrowLeft);
             arrowsContainerLeft.appendChild(downArrowLeft);
             arrowsContainerRight.appendChild(upArrowRight);
@@ -213,14 +228,14 @@ function moveSelectionDown() {
 function moveSelection(direction) {
     switch(direction) {
         case "up":
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw(direction);
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw();
             break;
         case "down":
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw(direction);
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw();
             break;
         default:
             currentDataBaseIndexVertical = 0;
-            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw("down");
+            porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw();
     }
 }
 
@@ -232,11 +247,11 @@ function yearChange() {
 
     for(var i = 0; i < porscheModels.length; i++) {
         if(porscheModels[i].length > 1 && porscheModels[i][0].serial == wantedSerial) {
-            porscheModels[i][0].draw("down");
+            porscheModels[i][0].draw();
             newPorscheFound = true;
 
         } else if(porscheModels[i].serial == wantedSerial) {
-            porscheModels[i].draw("down");
+            porscheModels[i].draw();
             newPorscheFound = true;
         }
     }
