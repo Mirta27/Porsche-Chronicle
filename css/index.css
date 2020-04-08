@@ -317,7 +317,7 @@ body {
 
 .porscheButton:hover {
     background: rgb(255,238,0);
-    box-shadow: 0 0 6px white;
+    box-shadow: 0 0 7px white;
     letter-spacing: 0.6px;
     cursor: pointer;
 }
@@ -427,13 +427,22 @@ body {
 
 /* ones that adjust content based on the screen's width */
 
-@media all and (max-width: 1500px) {
+@media all and (max-width: 1580px) {
     #buttonBoxster:before {
         content: "914/Boxster";
     }
+    #buttonConcepts:before {
+        content: "Porsche Concept";
+    }
+    .nav-models {
+        padding: 0 25px 0 25px;
+    }
+    .slideContainer {
+        width: 98%;
+    }
 }
 
-@media all and (max-width: 1350px) {
+@media all and (max-width: 1380px) {
     #buttonConcepts:before {
         content: "Concepts";
     }
@@ -441,11 +450,11 @@ body {
         padding: 0 15px 0 15px;
     }
     .slideContainer {
-        width: 100%;
+        width: 99%;
     }
 }
 
-@media all and (max-width: 1250px) {
+@media all and (max-width: 1280px) {
     #button911:before {
         content:"356/911";
     }
@@ -457,5 +466,11 @@ body {
     }
     #buttonRacing:before {
         content: "Racing";
+    }
+    .nav-models {
+        padding: 0 10px 0 10px;
+    }
+    .slideContainer {
+        width: 100%;
     }
 }

@@ -59,6 +59,10 @@ var porscheModel = ["914", "944 S2", "911 Carrera 4 (964)", "Panamericana Concep
 
 /* functions */
 
+// With the way this software is posted on github, users must create a mySQL-database on their PC to load items from there.
+// This function will attempt to connect to this database. (not quite implemented yet, in testing stages.)
+
+
 /* loading all porsches found and turning them into Porsche objects */
 /* the Porsche array goes in two dimensions, cars of the same year are added as an array for that year */
 function loadPorsches(wantedFamily) {
@@ -217,23 +221,24 @@ function changeCurrentFamily() {
 }
 
 function moveSelectionUp() {
-    moveSelection("up");
+    moveSelection(false);
 }
 
 function moveSelectionDown() {
-    moveSelection("down");
+    moveSelection(true);
 }
 
 /* this function handles moving between different cars of the same year when the up/down arrows are clicked. */
 function moveSelection(direction) {
     switch(direction) {
-        case "up":
+        case false:
             porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical-1].draw();
             break;
-        case "down":
+        case true:
             porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical+1].draw();
             break;
         default:
+            console.log("moveSelection called with invalid parameter.")
             currentDataBaseIndexVertical = 0;
             porscheModels[currentDataBaseIndexHorizontal][currentDataBaseIndexVertical].draw();
     }
@@ -271,8 +276,6 @@ function beginTraversing() {
 
 
 /* main loop */
-loadPorsches("all");
-
 window.onload = function() {
     selectDefault();
     document.getElementById("yearSelector").addEventListener('input', yearChange);
