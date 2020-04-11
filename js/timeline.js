@@ -187,15 +187,15 @@ function handleDualArrows() {
         }
 
         if(verticalTraversingDirection == false) {
-            arrowsContainerLeft.appendChild(upArrowLeft);
             arrowsContainerLeft.appendChild(downArrowLeft);
-            arrowsContainerRight.appendChild(upArrowRight);
+            arrowsContainerLeft.appendChild(upArrowLeft);
             arrowsContainerRight.appendChild(downArrowRight);
+            arrowsContainerRight.appendChild(upArrowRight);
         } else {
-            arrowsContainerLeft.appendChild(downArrowLeft);
             arrowsContainerLeft.appendChild(upArrowLeft);
-            arrowsContainerRight.appendChild(downArrowRight);
+            arrowsContainerLeft.appendChild(downArrowLeft);
             arrowsContainerRight.appendChild(upArrowRight);
+            arrowsContainerRight.appendChild(downArrowRight);
         }
         dualArrowsLast = true;
     }
@@ -276,6 +276,7 @@ function beginTraversing() {
 
 
 /* main loop */
+loadPorsches("all");
 window.onload = function() {
     selectDefault();
     document.getElementById("yearSelector").addEventListener('input', yearChange);

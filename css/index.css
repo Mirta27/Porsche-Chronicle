@@ -30,7 +30,7 @@ body {
     display: flex;
     padding: 0 30px 0 30px;
     margin: 10px;
-    margin-bottom: 11px;
+    margin-bottom: 7px;
     list-style: none;
 }
 
@@ -85,12 +85,6 @@ body {
 
 /* Porsche timeline */
 
-.bottomOfPage {
-    border-top: 4px groove firebrick;
-    padding-top: 15px;
-    margin-top: 0px;
-}
-
 .slideContainer {
     display: flex;
     width: 97%;
@@ -113,8 +107,11 @@ body {
     background: none;
     position: relative;
     bottom: 14px;
-    -webkit-transition: .1s;
-    transition: background .1s;
+    -webkit-transition: background 0.15s ease-out;
+    -moz-transition: background 0.15s ease-out;
+    -ms-transition: background 0.15s ease-out;
+    -o-transition: background 0.15s ease-out;
+    transition: background 0.15s ease-out;
 }
 
 .slider:hover {
@@ -132,36 +129,58 @@ body {
     background: firebrick;
     cursor: pointer;
     border: 1px solid black;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -ms-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
 }
 
 .slider::-moz-range-thumb {
-    width: 6px;
-    height: 25px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8px;
+    height: 32px;
+    margin-bottom: 1px;
     background: firebrick;
     cursor: pointer;
+    border: 1px solid black;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -ms-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
 }
 
 .slider:hover::-webkit-slider-thumb {
     background: white;
     border: 1px solid white;
     box-shadow: 0 0 16px white;
+    transform: scale(1.08);
 }
 
 .slider:active::-webkit-slider-thumb {
     background: sienna;
     border: 1px solid black;
     box-shadow: 0 0 2px black;
+    transform: scale(1.0);
+    -webkit-transition: all 0s ease-out;
+    -moz-transition: all 0s ease-out;
+    -ms-transition: all 0s ease-out;
+    -o-transition: all 0s ease-out;
+    transition: all 0s ease-out;
 }
 
 /* content area, the major visible part of the webpage */
+/* Includes the car's image, the top bar with the car's model year, and the bottom vertical navigation bar/model name combo. */
 
 .content {
-    height: 76.5%;
+    height: 78%;
     background-color: white;
 }
 
 .porscheThumbnail {
-    height: 87.15%;
+    height: 87.5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -187,16 +206,17 @@ body {
 
 .porscheName {
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 6%;
-    text-align: center;
     font-size: 1.78em;
-    text-shadow: 1px 1px 3px white;
+    opacity: 1;
+    text-shadow: 2px 2px 5px lightgray;
     -webkit-transition: opacity 1.4s ease-in;
     -moz-transition: opacity 1.4s ease-in;
     -ms-transition: opacity 1.4s ease-in;
     -o-transition: opacity 1.4s ease-in;
     transition: opacity 1.4s ease-in;
-    opacity: 1;
 }
 
 #porscheNameTop {
@@ -207,19 +227,23 @@ body {
     background-image: linear-gradient(white, aliceblue);
 }
 
-.porscheName p {
-    margin: 0;
-    padding: 0;
-}
-
-#porscheYear {
+#porscheYear, #porscheModel {
     margin: auto;
-    padding-bottom: 1px;
 }
 
 #porscheModel {
-    display: inline-block;
-    padding-top: 3px;
+    padding-bottom: 1px;
+}
+
+.bottomBorderLine {
+    height: 3px;
+    background: aliceblue;
+    border-bottom: 4px groove firebrick;
+}
+
+.bottomOfPage {
+    padding-top: 10px;
+    margin-top: 0px;
 }
 
 /* content area animations for the image and text */
@@ -237,65 +261,82 @@ body {
 }
 
 /* table items for the bottom bar of the content area */
+/* The bottom bar displays the porsche's model name and vertical navigation buttons */
 
 .tableWrapper {
     margin: auto;
-    display: table-cell;
-    width: 1025px;
-    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54.5%;
+    min-width: 1024px;
+    height: 100%;
     overflow: hidden;
 }
 
-#arrowsContainerLeft, #arrowsContainerRight {
-    height: 44px;
-}
-
-#arrowsContainerLeft {
-    float: left;
-}
-
-#arrowsContainerRight {
-    float: right;
-}
-
-.tableWrapper .porscheArrowsLeft {
-    float: left;
-    margin: 0 20px 0 0;
-}
-
-.tableWrapper .porscheArrowsRight {
-    float: right;
-    margin: 0 0 0 20px;
-}
-
 .tableWrapper .upArrows, .tableWrapper .downArrows {
-    opacity: .4;
-    background: lightgray;
-    height: 85%;
     display: block;
-    margin-top: -5px;
-    font-size: 1.25em;
-    -webkit-transition: .1s;
-    transition: opacity .1s;
+    font-size: 1.36em;
+    margin: 0;
+    opacity: 0.4;
+    background: lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -ms-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
 }
 
 .tableWrapper .upArrows {
-    padding: 5px 10px 4px 10px;
+    padding-top: 5px;
 }
 
 .tableWrapper .downArrows {
-    padding: 0 10px 9px 10px;
+    padding-bottom: 7px;
+}
+
+#arrowsContainerLeft, #arrowsContainerRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#arrowsContainerLeft, .tableWrapper .porscheArrowsLeft {
+    float: left;
+}
+
+#arrowsContainerRight, .tableWrapper .porscheArrowsRight {
+    float: right;
+}
+
+#arrowsContainerLeft .upArrows, #arrowsContainerLeft .downArrows {
+    margin-right: 15px;
+    margin-left: 10px;
+}
+
+#arrowsContainerRight .upArrows, #arrowsContainerRight .downArrows {
+    margin-left: 15px;
+    margin-right: 10px;
 }
 
 .upArrows:hover, .downArrows:hover {
     opacity: 1;
     cursor: pointer;
+    transform: scale(1.1);
     background: silver;
 }
 
 .upArrows:active, .downArrows:active {
-    transform: translateY(2px);
     background: dimgray;
+    transform: translateY(2px);
+    -webkit-transition: all 0s ease-out;
+    -moz-transition: all 0s ease-out;
+    -ms-transition: all 0s ease-out;
+    -o-transition: all 0s ease-out;
+    transition: all 0s ease-out;
 }
 
 /* buttons and other smaller items */
@@ -316,7 +357,7 @@ body {
 }
 
 .porscheButton:hover {
-    background: rgb(255,238,0);
+    background: rgb(255,246,0);
     box-shadow: 0 0 7px white;
     letter-spacing: 0.6px;
     cursor: pointer;
@@ -357,71 +398,15 @@ body {
 
 /* media queries */
 /* ones that adjust the central content based on current viewport height, the base one handles low verticality badly */
-@media all and (max-height: 900px) {
-    .porscheThumbnail {
-        height: 87.5%;
-    }
-    .tableWrapper {
-        width: 75%;
-        max-width: 1025px;
-        min-width: 900px; 
-    }
-}
-
 @media all and (max-height: 840px) {
-    .porscheThumbnail {
-        height: 88%;
-    }
-    .porscheName {
-        height: 5.9%;
-    }
-    #porscheModel {
-        padding-top: 4px;
-    }
-    .tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
-        font-size: 0.88em;
-        height: 74%;
-    }
     .porscheName p {
-        font-size: 0.9em;
-    }
-}
-
-@media all and (max-height: 800px) {
-    .porscheThumbnail {
-        height: 87.5%;
+        font-size: 0.95em;
     }
 }
 
 @media all and (max-height: 730px) {
-    .porscheThumbnail {
-        height: 88%;
-    }
-    .porscheName {
-        height: 5.8%;
-    }
-    #porscheModel {
-        padding-top: 0;
-        transform: translateY(-2px);
-    }
-    #arrowsContainerLeft, #arrowsContainerRight {
-        height: 33px;
-    }
-    .tableWrapper .porscheArrowsLeft, .tableWrapper .porscheArrowsRight {
-        font-size: 0.75em;
-        height: 85%;
-    }
     .porscheName p {
-        font-size: 0.8em;
-    }
-    .tableWrapper {
-        height: 33px;
-    }
-}
-
-@media all and (max-height: 660px) {
-    .porscheThumbnail {
-        height: 87.2%;
+        font-size: 0.9em;
     }
 }
 
