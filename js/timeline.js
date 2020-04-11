@@ -187,13 +187,13 @@ function handleDualArrows() {
         }
 
         if(verticalTraversingDirection == false) {
-            arrowsContainerLeft.appendChild(downArrowLeft);
             arrowsContainerLeft.appendChild(upArrowLeft);
+            arrowsContainerLeft.appendChild(downArrowLeft);
             arrowsContainerRight.appendChild(downArrowRight);
             arrowsContainerRight.appendChild(upArrowRight);
         } else {
-            arrowsContainerLeft.appendChild(upArrowLeft);
             arrowsContainerLeft.appendChild(downArrowLeft);
+            arrowsContainerLeft.appendChild(upArrowLeft);
             arrowsContainerRight.appendChild(upArrowRight);
             arrowsContainerRight.appendChild(downArrowRight);
         }
