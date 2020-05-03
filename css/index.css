@@ -41,9 +41,6 @@ body {
 }
 
 .nav-models li p {
-    color: white;
-    text-shadow: 1px 1px 4px black;
-    text-decoration: none;
     margin: 0;
 }
 
@@ -54,7 +51,6 @@ body {
 }
 
 /* adds the names to the buttons at the top of the screen */
-
 #buttonAll:before {
     content: "All";
 }
@@ -342,6 +338,9 @@ body {
 /* buttons and other smaller items */
 
 .porscheButton {
+    color: white;
+    text-shadow: 1px 1px 4px black;
+    text-decoration: none;
     display: block;
     padding: 4px 0 4px 0;
     font-size: 1.25em;
@@ -394,6 +393,35 @@ body {
 
 .porsche-model-family .selectedFamily:active {
     border: 3px inset darkgoldenrod;
+}
+
+/* Temporary button that calls Ajax */
+#buttonAjax:before {
+    content: "Establish a Database Connection";
+}
+
+#porscheLoaderButton {
+    margin: 0;
+}
+
+#buttonAjax {
+    font-size: 1em;
+    opacity: 0.4;
+}
+
+#buttonAjax:hover {
+    opacity: 1;
+}
+
+#buttonAjax:active {
+    transform: translateY(2px);
+}
+
+#ajaxStatus {
+    color: blueviolet;
+    margin: 4px auto;
+    display: none;
+    text-align: center;
 }
 
 /* media queries */

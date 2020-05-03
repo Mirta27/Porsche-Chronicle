@@ -54,13 +54,17 @@ var porscheFamily = ["boxster", "944", "911", "concept", "944", "944", "911"];
 var porscheYear = ["1969", "1989", "1989", "1989", "1992", "1992", "2005"];
 var porscheModel = ["914", "944 S2", "911 Carrera 4 (964)", "Panamericana Concept", "968", "928 GTS", "911 Carrera S (997)"];
 
-
-
-
 /* functions */
 
-// With the way this software is posted on github, users must create a mySQL-database on their PC to load items from there.
-// This function will attempt to connect to this database. (not quite implemented yet, in testing stages.)
+// This function prints out all the arrays above in one command.
+function porscheDataCheck() {
+    console.log(porscheSerial);
+    console.log(porscheId);
+    console.log(porscheShowcase);
+    console.log(porscheFamily);
+    console.log(porscheYear);
+    console.log(porscheModel);
+}
 
 
 /* loading all porsches found and turning them into Porsche objects */
@@ -69,7 +73,7 @@ function loadPorsches(wantedFamily) {
     porscheModels.length = 0;
     var horizontalIndexLoad = 0;
     var verticalIndexLoad = 1;
-    
+
     for (var i = 0; i < porscheSerial.length; i++) {
         verticalIndexLoad = 1;
         var currentPorsche = new Porsche(porscheSerial[i], porscheId[i], porscheShowcase[i], porscheFamily[i], porscheYear[i], porscheModel[i], 0, 0);
@@ -126,7 +130,7 @@ function selectDefault() {
 // Returns the direction the user was last moving in within the UI
 function directionDefinition(newVertIndex) {
     let oldVertIndex = currentDataBaseIndexVertical;
-    
+
     if(newVertIndex >= oldVertIndex) {
         console.log("Movement down or unchanged.");
         return true;
@@ -272,6 +276,91 @@ function beginTraversing() {
     traversingDirectionStart = year;
 }
 
+/* These function will handle the Ajax call using the button at the top of the page. This functionality will be standard in the final version. */
+
+//This function will attempt to connect to the server. Porsche-loading only proceeds on success.
+function attemptConnection() {
+    var frontEndStatus = document.getElementById("ajaxStatus");
+    frontEndStatus.style.display = "block";
+    
+    ajaxFrontEndHandler("Attempting to connect to the database...", "blueviolet");
+    console.log("Attempting to connect to the database...");
+    
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("GET", "dbhtest.php", true);
+    ajax.send();
+
+    ajax.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            ajaxData = this.responseText.substring(10, 31);
+            if(ajaxData == "GPRBPorscheMuseum2020") {
+                ajaxFrontEndHandler("Connection established.", "green");
+                console.log("Connection established.");
+                loadNewPorsche();
+            } else {
+                ajaxFrontEndHandler("Connection failed.", "red");
+                console.log("Connection failed.");
+            }
+        }
+    };
+}
+
+// I hate repeating lines of code.
+function ajaxFrontEndHandler(text, color) {
+    var frontEndStatus = document.getElementById("ajaxStatus");
+    frontEndStatus.innerHTML = text;
+    frontEndStatus.style.color = color;
+}
+
+// With the way this software is posted on github, users must create a mySQL-database on their PC to load items from there.
+// This is where the Ajax magic happens. Thanks to w3schools!
+// Typical Ajax call that 1. fetches my .php-file, 2. queries my database for data and 3. plasters the response text into three divs of the HTML-file.
+function loadNewPorsche() {
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("GET", "dbh.php", true);
+    ajax.send();
+
+    ajax.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //The php-file returns JSON, which is converted to an array here.
+            ajaxData = JSON.parse(this.responseText);
+            console.log(ajaxData);
+            implementLoadedPorsche(Math.floor(Math.random() *2));
+        }
+    };
+}
+
+// Replaces the default cars with the cars found in the database.
+function implementLoadedPorsche(index) {
+    document.getElementById("porscheYear").innerHTML = ajaxData[index].year;
+    document.getElementById("porscheModel").innerHTML = "Porsche " + ajaxData[index].model;
+    
+    // Empties the default cars
+    porscheSerial.length = 0;
+    porscheId.length = 0;
+    porscheShowcase.length = 0;
+    porscheFamily.length = 0;
+    porscheYear.length = 0;
+    porscheModel.length = 0;
+    
+    // Then puts new ones in their place!
+    for (var i = 0; i < ajaxData.length; i++) {
+        porscheSerial.push(ajaxData[i].serial);
+        porscheId.push(ajaxData[i].porsche);
+        porscheShowcase.push(ajaxData[i].showcase);
+        porscheFamily.push(ajaxData[i].family);
+        porscheYear.push(ajaxData[i].year);
+        porscheModel.push(ajaxData[i].model);
+    }
+    
+    porscheDataCheck();
+    updateFamilyButtons("all");
+    loadPorsches("all");
+    selectDefault();
+}
+
 
 
 
@@ -281,6 +370,7 @@ window.onload = function() {
     selectDefault();
     document.getElementById("yearSelector").addEventListener('input', yearChange);
     document.getElementById("yearSelector").addEventListener('mousedown', beginTraversing);
+    document.getElementById("porscheLoaderButton").addEventListener('click', attemptConnection);
     var upArrows = document.getElementsByClassName("upArrows");
     var downArrows = document.getElementsByClassName("downArrows");
     var familyButtons = document.getElementsByClassName("porscheFamilyButton");
