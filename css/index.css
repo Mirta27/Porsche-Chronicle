@@ -9,7 +9,8 @@ html, body {
 
 body {
     /*background-image: url("../images/gradient-bg.jpg");*/
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
     background: black;
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,13 +31,14 @@ body {
     display: flex;
     padding: 0 30px 0 30px;
     margin: 10px;
+    margin-top: 7px;
     margin-bottom: 7px;
     list-style: none;
 }
 
 .nav-models li {
     display: table-cell;
-    width: 14.2%;
+    width: 14.4%;
     margin: 4px auto;
 }
 
@@ -171,33 +173,38 @@ body {
 /* Includes the car's image, the top bar with the car's model year, and the bottom vertical navigation bar/model name combo. */
 
 .content {
-    height: 78%;
+    height: 78.6%;
     background-color: white;
 }
 
 .porscheThumbnail {
     height: 87.5%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     border-top: 3px groove gray;
     border-bottom: 3px groove gray;
+    justify-content: center;
+    align-items: center;
+}
+
+.porscheImageWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
 }
 
 .porscheImageContainer {
     height: 100%;
     width: 100%;
-    position: relative;
     background-image: url("../images/911_997.jpg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    left: 0%;
-    -webkit-transition: left 1.4s ease-in;
-    -moz-transition: left 1.4s ease-in;
-    -ms-transition: left 1.4s ease-in;
-    -o-transition: left 1.4s ease-in;
-    transition: left 1.4s ease-in;
+    -webkit-transition: transform .45s;
+    -moz-transition: transform .45s;
+    -ms-transition: transform .45s;
+    -o-transition: transform .45s;
+    transition: transform .45s;
 }
 
 .porscheName {
@@ -265,7 +272,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 54.5%;
-    min-width: 1024px;
+    min-width: 900px;
     height: 100%;
     overflow: hidden;
 }
@@ -358,7 +365,7 @@ body {
 .porscheButton:hover {
     background: rgb(255,246,0);
     box-shadow: 0 0 7px white;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
     cursor: pointer;
 }
 

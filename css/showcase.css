@@ -1,0 +1,321 @@
+html, body {
+    min-width: 1260px;
+}
+
+.banner {
+    height: 30px;
+}
+
+.nav-models li {
+    width: 25.0%;
+}
+
+/* content area, the major visible part of the webpage */
+/* Includes the car's image, the top bar with the car's model year, and the bottom vertical navigation bar/model name combo. */
+
+.content {
+    height: 89.2%;
+}
+
+.porscheThumbnail {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images_showcase/944_S2_Coupe/background.jpg");
+    background-size: 100%;
+    background-position: center;
+    overflow-y: auto;
+}
+
+.porscheImageWrapper {
+    height: 100%;
+    width: 50%;
+    display: block;
+    margin-right: 2.1%;
+    padding-right: 2.2%;
+    border-right: 4px double firebrick;
+    background: rgba(0, 0, 0, 0.10);
+}
+
+.porscheImageContainer {
+    max-width: 97%;
+    height: auto;
+    margin-top: 19px;
+    background: none;
+    border: 3px ridge rgb(75,75,75);
+    border-radius: 3px;
+    float: right;
+    vertical-align: middle;
+    -webkit-transition: transform .25s;
+    -moz-transition: transform .25s;
+    -ms-transition: transform .25s;
+    -o-transition: transform .25s;
+    transition: transform .25s;
+    transform: scale(1.00);
+}
+
+#porscheImageContainer2 {
+    max-width: 98%;
+    height: auto;
+    width: auto;
+    margin-top: 10px;
+    margin-left: 20%;
+}
+
+.porscheImageContainer:hover, .porscheImageContainer:focus {
+    transform: scale(1.04);
+    border: 3px solid rgb(255,246,0);
+    cursor: pointer;
+}
+
+.porscheImageContainer:hover .porscheImage, .porscheImageContainer:focus .porscheImage {
+    opacity: 0.92;
+}
+
+.porscheImageContainer:hover .porscheImageArrows, .porscheImageContainer:focus .porscheImageArrows {
+    display: block;
+}
+
+.porscheImage {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    float: right;
+    -webkit-transition: opacity .45s ease-out;
+    -moz-transition: opacity .45s ease-out;
+    -ms-transition: opacity .45s ease-out;
+    -o-transition: opacity .45s ease-out;
+    transition: opacity .45s ease-out;
+}
+
+#porscheModel {
+    padding-bottom: 0px;
+}
+
+.bottomOfPage {
+    height: 30px;
+    background-image: linear-gradient(lightgray, black);
+}
+
+/* Showcase-specific items */
+
+.porscheImageContainer .porscheImageArrows {
+    font-size: 3.46em;
+    color: snow;
+    display: none;
+    position: absolute;
+    top: 39.7%;
+    left: -4px;
+    margin: 0;
+    -webkit-transform: scaleX(0.65);
+    transform: scaleX(0.65);
+    -webkit-text-stroke: 2px black;
+}
+
+#imageArrowRight {
+    left: 93.6%;
+}
+
+#imageArrowRight2 {
+    left: 90.4%;
+}
+
+.porscheImageContainer .porscheImageArrows:hover {
+    color: rgb(255,246,0);
+    cursor: pointer;
+}
+
+.porscheImageContainer .porscheImageArrows:active {
+    color: sienna;
+    -webkit-transform: scale(0.68, 0.9);
+    transform: scale(0.68, 0.9);
+}
+
+.porscheShowcaseTextWrapper {
+    height: 100%;
+    width: 50%;
+    text-align: justify;
+}
+
+.porscheHeader, .porscheShowcase {
+    text-shadow: 1px 1px 3px black;
+}
+
+.porscheHeader {
+    color: white;
+    width: 200px;
+    padding-bottom: 5px;
+    margin-top: 21px;
+    border-bottom: 3px ridge firebrick;
+}
+
+.porscheShowcase {
+    color: snow;
+    margin-top: 0px;
+    line-height: 1.35;
+    width: 580px;
+}
+
+/* table items for the bottom bar of the content area */
+/* The bottom bar displays the porsche's model name and vertical navigation buttons */
+
+.tableWrapper {
+    width: 52.5%;
+}
+
+.tableWrapper .leftArrows, .tableWrapper .rightArrows {
+    display: block;
+    font-size: 1.36em;
+    margin: 0;
+    opacity: 0.4;
+    background: lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -ms-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+}
+
+.tableWrapper .leftArrows {
+    padding-top: 0px;
+    padding-bottom: 1px;
+}
+
+.tableWrapper .rightArrows {
+    padding-bottom: 1px;
+}
+
+#arrowsContainerLeft .leftArrows, #arrowsContainerLeft .rightArrows {
+    margin-right: 15px;
+    margin-left: 10px;
+}
+
+#arrowsContainerRight .leftArrows, #arrowsContainerRight .rightArrows {
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.leftArrows:hover, .rightArrows:hover {
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+    background: silver;
+}
+
+.leftArrows:active, .rightArrows:active {
+    background: dimgray;
+    transform: translateY(2px);
+    -webkit-transition: all 0s ease-out;
+    -moz-transition: all 0s ease-out;
+    -ms-transition: all 0s ease-out;
+    -o-transition: all 0s ease-out;
+    transition: all 0s ease-out;
+}
+
+/* Buttons and other smaller things */
+/* adds the names to the buttons at the top of the screen */
+#buttonReturn:before {
+    content: "Return";
+}
+
+#buttonDescription:before {
+    content: "Overview";
+}
+
+#buttonSpecSheet:before {
+    content: "Spec Sheet";
+}
+
+#buttonBeautyShots:before {
+    content: "Beauty Shots";
+}
+
+#buttonVideo:before {
+    content: "Video Showcase";
+}
+
+/* Showcase-specific media queries */
+/* This is a band-aid fix to the scrollable div problem I've found no solution for in the last 3 hours */
+@media all and (max-height: 925px) {
+    .porscheImageWrapper {
+        padding-bottom: 15px;
+        margin-top: 15px;
+    }
+}
+
+@media all and (max-height: 900px) {
+    .porscheImageWrapper {
+        padding-bottom: 50px;
+        margin-top: 50px;
+    }
+}
+
+@media all and (max-height: 875px) {
+    .porscheImageWrapper {
+        padding-bottom: 75px;
+        margin-top: 75px;
+    }
+}
+
+@media all and (max-height: 850px) {
+    .porscheImageWrapper {
+        padding-bottom: 100px;
+        margin-top: 100px;
+    }
+}
+
+@media all and (max-height: 825px) {
+    .porscheImageWrapper {
+        padding-bottom: 125px;
+        margin-top: 125px;
+    }
+}
+
+@media all and (max-height: 800px) {
+    .porscheImageWrapper {
+        padding-bottom: 150px;
+        margin-top: 150px;
+    }
+}
+
+@media all and (max-height: 775px) {
+    .porscheImageWrapper {
+        padding-bottom: 175px;
+        margin-top: 175px;
+    }
+}
+
+@media all and (max-height: 750px) {
+    .porscheImageWrapper {
+        padding-bottom: 200px;
+        margin-top: 200px;
+    }
+}
+
+@media all and (max-height: 725px) {
+    .porscheImageWrapper {
+        padding-bottom: 220px;
+        margin-top: 220px;
+    }
+}
+
+
+@media all and (max-height: 700px) {
+    .porscheImageWrapper {
+        padding-bottom: 240px;
+        margin-top: 240px;
+    }
+}
+
+/* Big image arrows */
+@media all and (max-width: 1440px) {
+    #imageArrowRight {
+        left: 93.2%;
+    }
+}
+
+@media all and (max-width: 1320px) {
+    #imageArrowRight {
+        left: 92.3%;
+    }
+}

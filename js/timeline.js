@@ -10,6 +10,7 @@ var currentDataBaseIndexHorizontal = 0;
 var currentDataBaseIndexVertical = 0;
 var verticalTraversingDirection = true;
 var dualArrowsLast = false;
+var resizeFired = false;
 
 
 
@@ -43,6 +44,7 @@ function draw() {
     currentDataBaseIndexHorizontal = this.horizontalIndex;
     currentDataBaseIndexVertical = this.verticalIndex;
     updateUpDownArrows();
+    updateLocalStorage(this.showcaseId, this.horizontalIndex, this.verticalIndex);
 }
 
 /* loading from database might be implemented with a for-loop of some kind, but for now three example cars are created manually */
@@ -124,6 +126,14 @@ function selectDefault() {
     } else {
         porscheModels[0].draw();
     }
+}
+
+/* This function keeps track of what car we last had on screen and in which database coordinates it is. */
+function updateLocalStorage(showcase, horizontalIndex, verticalIndex) {
+    localStorage.setItem("showcase", showcase);
+    localStorage.setItem("lastHorizontalIndex", horizontalIndex);
+    localStorage.setItem("lastVerticalIndex", verticalIndex);
+    console.log("Showcase: " + showcase + ", Location: " + horizontalIndex + ", " + verticalIndex);
 }
 
 // These two functions get called by draw()
