@@ -37,7 +37,7 @@ function draw() {
     //console.log(this.toString());
     document.getElementById("porscheYear").innerHTML = this.modelYear;
     document.getElementById("porscheModel").innerHTML = "Porsche " + this.modelName;
-    document.getElementById("porscheImageContainer").style.backgroundImage = "url(images/" + this.id + ".jpg)";
+    document.getElementById("beaImageContainer").style.backgroundImage = "url(images/" + this.id + ".jpg)";
 
     document.getElementById("yearSelector").value = this.serial;
     verticalTraversingDirection = directionDefinition(this.verticalIndex);
@@ -213,18 +213,6 @@ function handleDualArrows() {
         }
         dualArrowsLast = true;
     }
-}
-
-/* handles the stylization of the buttons at the top of the page */
-function updateFamilyButtons(family) {
-    var familyButtons = document.getElementsByClassName("porscheFamilyButton");
-    for(var i = 0; i < familyButtons.length; i++) {
-        if(familyButtons[i].className == "porscheFamilyButton selectedFamily") {
-            familyButtons[i].classList.remove("selectedFamily");
-            break;
-        }
-    }
-    document.getElementById(family).classList.add("selectedFamily");
 }
 
 function changeCurrentFamily() {

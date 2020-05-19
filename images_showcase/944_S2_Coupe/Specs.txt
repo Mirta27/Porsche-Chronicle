@@ -1,0 +1,68 @@
+Porsche 944 S2 '89
+GENERAL
+
+Release (Europe): July 1989
+Release (North America): September 1990
+End of production: July 1991
+Units produced: 19,945
+Original MSRP: $45,285
+
+PERFORMANCE
+
+Power: 208 hp / 211 PS / 155 kW @ 5800 rpm
+Torque: 280 Nm / 207 ft-lb @ 4100 rpm
+Redline: 6500 rpm
+Curb weight (no driver): 1330 kg
+Weight distribution F/R (%): 50.7 / 49.3
+
+Acceleration 0-60 mph: 6.7 s
+Acceleration 0-100 mph: 16.4 s
+Top speed: 240 km/h / 149 mph
+
+MECHANICAL
+Engine: Porsche M44
+Engine type: 16-valve, inline-4, DOHC
+Fuel system: Indirect injection, spark-ignition
+Special features: Bosch DME Motronic ECU
+Aspiration: Natural
+Displacement: 2990 cc / 181.8 cui
+Bore: 104 mm / 4.09 in
+Stroke: 88 mm / 3.46 in
+Compression ratio: 10.9:1
+
+DRIVETRAIN
+Drive layout: Front-engine / Rear-wheel drive
+Transmission: 5-speed manual + reverse
+1st gear: 3.500
+2nd gear: 2.059
+3rd gear: 1.400
+4th gear: 1.034
+5th gear: 0.829
+Reverse: -3.500
+Final drive: 3.875:1
+
+Front suspension: Struts, coil springs
+Rear suspension: Trailing arms, torsion bars
+Front brakes: 282 mm / 11.1 in 4-piston ventilated disk
+Rear brakes: 289 mm / 11.4 in 4-piston ventilated disk
+Anti-Lock Brakes: Yes
+Traction Control: No
+Stability Management: No
+Standard wheels F/R: 16" / 16"
+Standard tyres F/R: 205/55 ZR 16 / 225/50 ZR 16
+
+DIMENSIONS & CHASSIS
+Length: 4230 mm / 166.5 in
+Width: 1735 mm / 68.3 in
+Height: 1275 mm / 50.2 in
+Wheelbase: 2400 mm / 94.5 in
+
+Front track: 1477 mm / 58.1 in
+Rear track: 1451 mm / 57.1 in
+Ground clearance: 140 mm / 5.5 in
+Turning circle (est.): 10 m / 32.8 in
+
+Drag coefficient (est.): 0.33
+Lift coefficient (est.): unknown
+Cargo capacity: 518 dm3 / 18.3 cu-ft
+Fuel capacity: 80 liter / 21.2 U.S. gallon
