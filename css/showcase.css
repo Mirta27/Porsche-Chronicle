@@ -22,11 +22,15 @@ html, body {
     background-size: 100%;
     background-position: center;
     overflow-y: auto;
+    display: flex;
+}
+
+#porscheThumbnailBea {
     display: none;
 }
 
-#porscheThumbnail2 {
-    display: flex;
+#porscheThumbnailVid {
+    display: none;
 }
 
 .porscheImageWrapper {
@@ -90,6 +94,10 @@ html, body {
     transition: opacity .45s ease-out;
 }
 
+#porscheImageBea {
+    margin: auto;
+}
+
 #porscheModel {
     padding-bottom: 0px;
 }
@@ -97,12 +105,6 @@ html, body {
 .bottomOfPage {
     height: 30px;
     background-image: linear-gradient(lightgray, black);
-}
-
-/* beaImageWrapper and beaImageContainer things for the beauty shots and video screens */
-
-.beaImageContainer {
-    background-image: url(../images_showcase/944_S2_Coupe/944_S2_Coupe_bea_01.jpg);
 }
 
 /* Showcase-specific items */
@@ -214,6 +216,15 @@ html, body {
     margin-top: 0px;
     line-height: 1.35;
     width: 580px;
+}
+
+/* iframe styling */
+iframe {
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 100%;
+    width: 100%;
 }
 
 /* table items for the bottom bar of the content area */
